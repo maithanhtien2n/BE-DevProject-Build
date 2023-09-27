@@ -14,8 +14,9 @@ const onSaveFile = (path, base64) => {
 };
 
 const onDeleteFile = (linkFile, subPath = "") => {
-  console.log(onConvertFileName(linkFile));
-  return fs.unlinkSync(`uploads/${subPath}${onConvertFileName(linkFile)}`);
+  const filePath = `uploads/${subPath}${onConvertFileName(linkFile)}`;
+  // Kiểm tra xem tệp có tồn tại không
+  if (fs.existsSync(filePath)) return fs.unlinkSync(filePath);
 };
 
 module.exports = {
